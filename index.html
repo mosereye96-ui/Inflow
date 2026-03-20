@@ -205,7 +205,6 @@ body.dark .tut-title{color:#f0efe8;}
     <button class="nt" onclick="showView('weekly',this)">Weekly</button>
     <button class="nt" onclick="showView('monthly',this)">Monthly</button>
   </div>
-
   <div id="v-daily" class="view active">
     <div class="score-block">
       <div class="ring-wrap">
@@ -239,7 +238,6 @@ body.dark .tut-title{color:#f0efe8;}
     </div>
     <div class="card"><div class="ch"><span class="ct">This week</span></div><div style="position:relative;width:100%;height:110px;"><canvas id="miniChart"></canvas></div></div>
   </div>
-
   <div id="v-weekly" class="view">
     <div class="card" style="margin-bottom:14px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -259,7 +257,6 @@ body.dark .tut-title{color:#f0efe8;}
     <div class="card"><div class="ch"><span class="ct">Daily scores</span></div><div style="position:relative;width:100%;height:180px;"><canvas id="weekChart"></canvas></div></div>
     <div class="card"><div class="ch"><span class="ct">Breakdown</span></div><div id="week-bd"></div></div>
   </div>
-
   <div id="v-monthly" class="view">
     <div class="sr" style="grid-template-columns:repeat(4,1fr);">
       <div class="st"><div class="sl">Avg</div><div class="sv" id="m-avg">--</div></div>
@@ -286,9 +283,7 @@ body.dark .tut-title{color:#f0efe8;}
     <div class="card"><div class="ch"><span class="ct">Year overview</span></div><div class="yg" id="year-grid"></div></div>
   </div>
 </div>
-
 <div class="milestone" id="milestone"></div>
-
 <div class="overlay" id="picker-overlay" onclick="if(event.target===this)closePicker()">
   <div class="sheet">
     <div class="sheet-title">Pick a time</div>
@@ -304,7 +299,6 @@ body.dark .tut-title{color:#f0efe8;}
     </div>
   </div>
 </div>
-
 <div class="overlay" id="settings-overlay" onclick="if(event.target===this)closeSettings()">
   <div class="sheet">
     <div class="sheet-title">Settings</div>
@@ -330,7 +324,6 @@ body.dark .tut-title{color:#f0efe8;}
     <button class="savebtn" onclick="saveSettings()">Save changes</button>
   </div>
 </div>
-
 <div class="overlay" id="tutorial-overlay" onclick="if(event.target===this)closeTutorial()">
   <div class="sheet">
     <div class="sheet-title">How Inflow works</div>
@@ -338,12 +331,11 @@ body.dark .tut-title{color:#f0efe8;}
     <div class="tut-step"><div class="tut-num">1</div><div><div class="tut-title">Check off tasks daily</div><div class="tut-desc">Tap any task to mark it done. Your score and ring update live.</div></div></div>
     <div class="tut-step"><div class="tut-num">2</div><div><div class="tut-title">Add or remove on the fly</div><div class="tut-desc">Type a task, pick a time with the scroll wheel, hit +. Tasks auto-sort AM then PM.</div></div></div>
     <div class="tut-step"><div class="tut-num">3</div><div><div class="tut-title">Level up your status</div><div class="tut-desc">Go from "Getting started" to "Locked in" as you check off more tasks each day.</div></div></div>
-    <div class="tut-step"><div class="tut-num">4</div><div><div class="tut-title">Get your weekly grade</div><div class="tut-desc">Check the Weekly tab for your A–F grade based on your daily average.</div></div></div>
+    <div class="tut-step"><div class="tut-num">4</div><div><div class="tut-title">Get your weekly grade</div><div class="tut-desc">Check the Weekly tab for your A-F grade based on your daily average.</div></div></div>
     <div class="tut-step"><div class="tut-num">5</div><div><div class="tut-title">Build your streak</div><div class="tut-desc">Every day you complete at least one task keeps it alive. Don't break it.</div></div></div>
     <button class="close-btn" onclick="closeTutorial()">Got it</button>
   </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const QUOTES=["You don't rise to the level of your goals—you fall to the level of your systems. — James Clear","Discipline is choosing what you want most over what you want now.","Small actions, repeated daily, build unstoppable momentum.","Success isn't built in a day—it's built daily.","Consistency beats intensity every time.","Show up, even when you don't feel like it.","Progress is progress, no matter how small.","Win the day, and the streak will follow.","Every checkmark is a vote for the person you're becoming.","Your habits are your real scoreboard.","Stack enough good days, and you can't lose.","Tiny gains today become massive results tomorrow.","One bad day doesn't break the system—quitting does.","Fall off once, get back twice as fast.","Miss once, never miss twice.","Bad days are part of strong systems.","You don't need motivation—you need standards.","Keep going. That's the whole secret.","Keep the streak alive.","Just one more.","Don't zero today.","You're on track.","Daily > occasionally.","Finish strong.","No one is coming. Build it yourself.","Hard choices, easy life. Easy choices, hard life. — Jerzy Gregorek","Do it tired. Do it unmotivated. Just do it.","Comfort is expensive. Discipline is cheap.","The work you avoid is the life you want."];
@@ -353,21 +345,18 @@ const AMPMS=['AM','PM'];
 const TIERS=[
   {min:0,max:0,label:'Getting started',sub:'Check off your first task to begin your day.'},
   {min:1,max:39,label:'Just warming up',sub:'Keep going — momentum builds fast.'},
-  {min:40,max:69,label:'Building momentum',sub:'You\'re in a rhythm. Stay with it.'},
+  {min:40,max:69,label:'Building momentum',sub:"You're in a rhythm. Stay with it."},
   {min:70,max:89,label:'In the flow',sub:'Strong day. Finish what you started.'},
-  {min:90,max:99,label:'Almost locked in',sub:'One more and you\'re there.'},
-  {min:100,max:100,label:'Locked in',sub:'Perfect day. That\'s how it\'s done.'},
+  {min:90,max:99,label:'Almost locked in',sub:"One more and you're there."},
+  {min:100,max:100,label:'Locked in',sub:"Perfect day. That's how it's done."},
 ];
-
 const now=new Date(),todayKey=now.toISOString().slice(0,10);
 document.getElementById('daily-quote').textContent='"'+QUOTES[Math.floor(now/86400000)%QUOTES.length]+'"';
 document.getElementById('d-date-short').textContent=now.toLocaleDateString('en-US',{month:'short',day:'numeric'});
-
 const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MNS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const DEFAULT=[{n:'Morning workout',t:'6:00 AM',h24:6},{n:'Review leads & pipeline',t:'8:30 AM',h24:8.5},{n:'Follow up on open deals',t:'9:00 AM',h24:9},{n:'Prospecting calls',t:'10:00 AM',h24:10},{n:'Send follow-up texts',t:'12:00 PM',h24:12},{n:'Log new leads in CRM',t:'2:00 PM',h24:14},{n:'Trade-in evaluations',t:'3:30 PM',h24:15.5},{n:'End-of-day review',t:'6:00 PM',h24:18}];
-
 function load(){try{return JSON.parse(localStorage.getItem('inflow_v2')||'null');}catch(e){return null;}}
 function save(){try{localStorage.setItem('inflow_v2',JSON.stringify(state));}catch(e){}}
 let oldState=null;try{oldState=JSON.parse(localStorage.getItem('inflow_v1')||localStorage.getItem('sb_v10')||localStorage.getItem('sb_v11')||'null');}catch(e){}
@@ -376,14 +365,8 @@ if(state&&!localStorage.getItem('inflow_v2'))save();
 if(!state.defs)state.defs=DEFAULT;
 if(!state.tasks||state.tasks.length!==state.defs.length)state.tasks=new Array(state.defs.length).fill(false);
 if(!state.milestones)state.milestones={};
-
-function applyDark(){
-  document.body.classList.toggle('dark',state.dark);
-  const dt=document.getElementById('dark-toggle');if(dt)dt.className='toggle '+(state.dark?'on':'off');
-  const di=document.getElementById('dark-icon');if(di)di.style.stroke=state.dark?'#f0efe8':'#888780';
-}
+function applyDark(){document.body.classList.toggle('dark',state.dark);const dt=document.getElementById('dark-toggle');if(dt)dt.className='toggle '+(state.dark?'on':'off');const di=document.getElementById('dark-icon');if(di)di.style.stroke=state.dark?'#f0efe8':'#888780';}
 function toggleDark(){state.dark=!state.dark;save();applyDark();renderWeekly();renderMonthly();}
-
 function sc(){return state.defs.length?Math.round(state.tasks.filter(Boolean).length/state.defs.length*100):0;}
 function bc(s){return s>=80?'bg':s>=50?'ba':s>0?'br':'bb';}
 function hc(s){if(s===null||s===undefined)return state.dark?'#2c2c2a':'#e8e8e4';if(s===0)return'#FCEBEB';if(s<50)return'#EAF3DE';if(s<80)return'#97C459';return'#3B6D11';}
@@ -391,29 +374,15 @@ function streak(){let n=0;const d=new Date(now);while(true){const k=d.toISOStrin
 function wkData(){const r=[];for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);const k=d.toISOString().slice(0,10);const isT=k===todayKey;r.push({label:isT?'Today':DN[d.getDay()],s:isT?sc():(state.history[k]??null),isT});}return r;}
 function getTier(s){return TIERS.find(t=>s>=t.min&&s<=t.max)||TIERS[0];}
 function getGrade(avg){if(avg>=90)return{g:'A',cls:'grade-A',desc:'Exceptional week'};if(avg>=80)return{g:'B',cls:'grade-B',desc:'Solid week'};if(avg>=70)return{g:'C',cls:'grade-C',desc:'Getting there'};if(avg>=60)return{g:'D',cls:'grade-D',desc:'Room to improve'};return{g:'F',cls:'grade-F',desc:'Start fresh tomorrow'};}
-
-function showMilestone(msg){
-  const el=document.getElementById('milestone');
-  el.textContent=msg;el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),3000);
-}
+function showMilestone(msg){const el=document.getElementById('milestone');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),3000);}
 function checkMilestones(){
   const s=sc(),str=streak(),done=state.tasks.filter(Boolean).length;
-  if(done===1&&!state.milestones.first){state.milestones.first=true;save();showMilestone('First task done. Let\'s go.');}
-  if(s===100&&!state.milestones['perfect_'+todayKey]){state.milestones['perfect_'+todayKey]=true;save();showMilestone('Perfect day. That\'s how it\'s done.');}
-  if(str===7&&!state.milestones.streak7){state.milestones.streak7=true;save();showMilestone('7 day streak. You\'re building something real.');}
-  if(str===30&&!state.milestones.streak30){state.milestones.streak30=true;save();showMilestone('30 day streak. Unstoppable.');}
+  if(done===1&&!state.milestones.first){state.milestones.first=true;save();showMilestone("First task done. Let's go.");}
+  if(s===100&&!state.milestones['perfect_'+todayKey]){state.milestones['perfect_'+todayKey]=true;save();showMilestone("Perfect day. That's how it's done.");}
+  if(str===7&&!state.milestones.streak7){state.milestones.streak7=true;save();showMilestone("7 day streak. You're building something real.");}
+  if(str===30&&!state.milestones.streak30){state.milestones.streak30=true;save();showMilestone("30 day streak. Unstoppable.");}
 }
-
-function updateRing(s){
-  const circ=213.6;
-  const offset=circ-(circ*s/100);
-  document.getElementById('ring-fill').style.strokeDashoffset=offset;
-  const tier=getTier(s);
-  document.getElementById('tier-label').textContent=tier.label;
-  document.getElementById('tier-sub').textContent=tier.sub;
-}
-
+function updateRing(s){const circ=213.6;document.getElementById('ring-fill').style.strokeDashoffset=circ-(circ*s/100);const tier=getTier(s);document.getElementById('tier-label').textContent=tier.label;document.getElementById('tier-sub').textContent=tier.sub;}
 let mc,wc;
 function renderDaily(){
   const s=sc(),done=state.tasks.filter(Boolean).length,str=streak();
@@ -443,19 +412,12 @@ function renderDaily(){
   });
   renderMini();
 }
-
 let selH=7,selM=0,selAP=0;
-function buildWheelInner(id,items,sel){
-  const inner=document.getElementById(id);inner.innerHTML='';
-  const p=document.createElement('div');p.style.height='56px';inner.appendChild(p);
-  items.forEach((item,i)=>{const el=document.createElement('div');el.className='wi'+(i===sel?' sel':'');el.textContent=item;inner.appendChild(el);});
-  const p2=document.createElement('div');p2.style.height='56px';inner.appendChild(p2);
-  inner.style.transform=`translateY(${-sel*56}px)`;
-}
+function buildWheelInner(id,items,sel){const inner=document.getElementById(id);inner.innerHTML='';const p=document.createElement('div');p.style.height='56px';inner.appendChild(p);items.forEach((item,i)=>{const el=document.createElement('div');el.className='wi'+(i===sel?' sel':'');el.textContent=item;inner.appendChild(el);});const p2=document.createElement('div');p2.style.height='56px';inner.appendChild(p2);inner.style.transform='translateY('+(-sel*56)+'px)';}
 function setupWheelDrag(wId,iId,items,getI,setI){
   const wheel=document.getElementById(wId),inner=document.getElementById(iId);
   let sY=0,sI=0,drag=false;
-  function upd(idx){idx=Math.max(0,Math.min(items.length-1,idx));setI(idx);inner.style.transform=`translateY(${-idx*56}px)`;inner.querySelectorAll('.wi').forEach((el,i)=>el.className='wi'+(i===idx?' sel':''));}
+  function upd(idx){idx=Math.max(0,Math.min(items.length-1,idx));setI(idx);inner.style.transform='translateY('+(-idx*56)+'px)';inner.querySelectorAll('.wi').forEach((el,i)=>el.className='wi'+(i===idx?' sel':''));}
   wheel.addEventListener('mousedown',e=>{sY=e.clientY;sI=getI();drag=true;});
   window.addEventListener('mousemove',e=>{if(!drag)return;upd(sI+Math.round((sY-e.clientY)/56));});
   window.addEventListener('mouseup',()=>{drag=false;});
@@ -464,25 +426,13 @@ function setupWheelDrag(wId,iId,items,getI,setI){
   window.addEventListener('touchend',()=>{drag=false;});
   wheel.addEventListener('wheel',e=>{e.preventDefault();upd(getI()+(e.deltaY>0?1:-1));},{passive:false});
 }
-function openPicker(){
-  buildWheelInner('hi',HOURS,selH);buildWheelInner('mi',MINS,selM);buildWheelInner('ai',AMPMS,selAP);
-  setupWheelDrag('hw','hi',HOURS,()=>selH,i=>selH=i);
-  setupWheelDrag('mw','mi',MINS,()=>selM,i=>selM=i);
-  setupWheelDrag('aw','ai',AMPMS,()=>selAP,i=>selAP=i);
-  document.getElementById('picker-overlay').classList.add('open');
-}
+function openPicker(){buildWheelInner('hi',HOURS,selH);buildWheelInner('mi',MINS,selM);buildWheelInner('ai',AMPMS,selAP);setupWheelDrag('hw','hi',HOURS,()=>selH,i=>selH=i);setupWheelDrag('mw','mi',MINS,()=>selM,i=>selM=i);setupWheelDrag('aw','ai',AMPMS,()=>selAP,i=>selAP=i);document.getElementById('picker-overlay').classList.add('open');}
 function closePicker(){document.getElementById('picker-overlay').classList.remove('open');}
-function confirmTime(){
-  const h=HOURS[selH],m=MINS[selM],ap=AMPMS[selAP];
-  document.getElementById('time-display').textContent=h+':'+m+' '+ap;
-  closePicker();
-}
-
+function confirmTime(){const h=HOURS[selH],m=MINS[selM],ap=AMPMS[selAP];document.getElementById('time-display').textContent=h+':'+m+' '+ap;closePicker();}
 function quickAdd(){
   const name=document.getElementById('new-task-name').value.trim();if(!name)return;
   const tStr=document.getElementById('time-display').textContent;
-  let h24=parseInt(HOURS[selH]);
-  const m=parseInt(MINS[selM]);
+  let h24=parseInt(HOURS[selH]);const m=parseInt(MINS[selM]);
   if(selAP===1&&h24!==12)h24+=12;
   if(selAP===0&&h24===12)h24=0;
   h24+=m/60;
@@ -490,24 +440,20 @@ function quickAdd(){
   document.getElementById('new-task-name').value='';
   state.history[todayKey]=sc();save();renderDaily();
 }
-
-function renderMini(){
-  const wd=wkData();if(mc)mc.destroy();
-  const tc=state.dark?'#888780':'#b4b2a9';
-  mc=new Chart(document.getElementById('miniChart'),{type:'bar',data:{labels:wd.map(d=>d.label),datasets:[{data:wd.map(d=>d.s??0),backgroundColor:wd.map(d=>d.isT?'#00bcd4':d.s>=80?'#639922':d.s>=50?'#BA7517':d.s>0?'#E24B4A':'#D3D1C7'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},scales:{y:{min:0,max:100,display:false},x:{ticks:{font:{size:11},color:tc},grid:{display:false}}}}});
-}
+function renderMini(){const wd=wkData();if(mc)mc.destroy();const tc=state.dark?'#888780':'#b4b2a9';mc=new Chart(document.getElementById('miniChart'),{type:'bar',data:{labels:wd.map(d=>d.label),datasets:[{data:wd.map(d=>d.s??0),backgroundColor:wd.map(d=>d.isT?'#00bcd4':d.s>=80?'#639922':d.s>=50?'#BA7517':d.s>0?'#E24B4A':'#D3D1C7'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},scales:{y:{min:0,max:100,display:false},x:{ticks:{font:{size:11},color:tc},grid:{display:false}}}}});}
 function renderWeekly(){
   const wd=wkData();const scores=wd.map(d=>d.s).filter(s=>s!==null&&s>0);
   const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  const str=streak();
   document.getElementById('w-avg').textContent=scores.length?avg+'%':'--';
   document.getElementById('w-best').textContent=scores.length?Math.max(...scores)+'%':'--';
   document.getElementById('w-hits').textContent=scores.filter(s=>s>=80).length;
-  document.getElementById('w-streak').textContent=streak()+'d';document.getElementById('d-streak').textContent=streak()+'d';d';
+  document.getElementById('w-streak').textContent=str+'d';
+  document.getElementById('d-streak').textContent=str+'d';
   if(scores.length){const gr=getGrade(avg);document.getElementById('week-grade').textContent=gr.g;document.getElementById('week-grade').className='grade-badge '+gr.cls;document.getElementById('grade-desc').textContent=gr.desc;}
   else{document.getElementById('week-grade').textContent='--';document.getElementById('grade-desc').textContent='Complete some tasks to get your grade';}
   if(wc)wc.destroy();
-  const tc=state.dark?'#888780':'#888780';
-  const gc=state.dark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
+  const tc=state.dark?'#888780':'#888780';const gc=state.dark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.05)';
   wc=new Chart(document.getElementById('weekChart'),{type:'bar',data:{labels:wd.map(d=>d.label),datasets:[{data:wd.map(d=>d.s??0),backgroundColor:wd.map(d=>d.isT?'#00bcd4':d.s>=80?'#639922':d.s>=50?'#BA7517':d.s>0?'#E24B4A':'#D3D1C7'),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:11},color:tc},grid:{color:gc}},x:{ticks:{font:{size:12},color:tc},grid:{display:false}}}}});
   const bd=document.getElementById('week-bd');bd.innerHTML='';
   const bdc=state.dark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.08)';
@@ -544,17 +490,11 @@ let sDefs=[];
 function openSettings(){sDefs=JSON.parse(JSON.stringify(state.defs));renderSettingsModal();updateNotifUI();document.getElementById('settings-overlay').classList.add('open');}
 function closeSettings(){document.getElementById('settings-overlay').classList.remove('open');}
 function esc(s){return(s||'').replace(/"/g,'&quot;');}
-function renderSettingsModal(){
-  const c=document.getElementById('settings-tasks');c.innerHTML='';
-  sDefs.forEach((t,i)=>{const row=document.createElement('div');row.className='ter';row.innerHTML='<input class="ti" value="'+esc(t.n)+'" placeholder="Task name" oninput="sDefs['+i+'].n=this.value"/><input class="tit" value="'+esc(t.t)+'" placeholder="Time" oninput="sDefs['+i+'].t=this.value"/><button class="delbtn" onclick="sDel('+i+')">x</button>';c.appendChild(row);});
-}
+function renderSettingsModal(){const c=document.getElementById('settings-tasks');c.innerHTML='';sDefs.forEach((t,i)=>{const row=document.createElement('div');row.className='ter';row.innerHTML='<input class="ti" value="'+esc(t.n)+'" placeholder="Task name" oninput="sDefs['+i+'].n=this.value"/><input class="tit" value="'+esc(t.t)+'" placeholder="Time" oninput="sDefs['+i+'].t=this.value"/><button class="delbtn" onclick="sDel('+i+')">x</button>';c.appendChild(row);});}
 function sAdd(){sDefs.push({n:'',t:'',h24:8});renderSettingsModal();const ins=document.querySelectorAll('#settings-tasks .ti');ins[ins.length-1].focus();}
 function sDel(i){if(sDefs.length<=1)return;sDefs.splice(i,1);renderSettingsModal();}
 function saveSettings(){state.defs=JSON.parse(JSON.stringify(sDefs));state.tasks=new Array(state.defs.length).fill(false);state.history[todayKey]=sc();save();closeSettings();renderDaily();}
-function toggleNotif(){
-  if(!state.notif){if('Notification' in window){Notification.requestPermission().then(p=>{if(p==='granted'){state.notif=true;save();updateNotifUI();document.getElementById('notif-status').textContent='Reminder set for '+state.reminderTime+'.';}else{document.getElementById('notif-status').textContent='Permission denied. Enable in browser settings.';}});}else{document.getElementById('notif-status').textContent='Notifications not supported.';}}
-  else{state.notif=false;save();updateNotifUI();}
-}
+function toggleNotif(){if(!state.notif){if('Notification' in window){Notification.requestPermission().then(p=>{if(p==='granted'){state.notif=true;save();updateNotifUI();document.getElementById('notif-status').textContent='Reminder set for '+state.reminderTime+'.';}else{document.getElementById('notif-status').textContent='Permission denied. Enable in browser settings.';}});}else{document.getElementById('notif-status').textContent='Notifications not supported.';}}else{state.notif=false;save();updateNotifUI();}}
 function updateNotifUI(){const t=document.getElementById('notif-toggle');if(t)t.className='toggle '+(state.notif?'on':'off');const row=document.getElementById('time-picker-row');if(row)row.style.display=state.notif?'block':'none';const rt=document.getElementById('reminder-time');if(rt)rt.value=state.reminderTime||'08:00';}
 function saveReminderTime(){state.reminderTime=document.getElementById('reminder-time').value;save();document.getElementById('notif-status').textContent='Reminder updated to '+state.reminderTime+'.';}
 function openTutorial(){document.getElementById('tutorial-overlay').classList.add('open');}
